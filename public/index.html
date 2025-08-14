@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CityWheelsPK - Ride Smart</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fb;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 40px 20px;
+      background-color: #e8f6f3;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      color: #333;
+      max-width: 600px;
+      margin-bottom: 30px;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 28px;
+      margin: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      background-color: #1abc9c;
+      color: white;
+      font-size: 1em;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn-secondary {
+      background-color: #3498db;
+    }
+
+    .btn-primary:hover {
+      background-color: #16a085;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    .options {
+      margin-top: 40px;
+    }
+
+    .options h2 {
+      font-size: 1.5em;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <h1>Welcome to CityWheelsPK</h1>
+    <p>
+      CityWheelsPK is your smart, reliable and affordable ride-hailing platform.
+      Whether you're a passenger looking for a ride or a driver ready to earn,
+      we’ve built the system to connect you quickly and securely.
+    </p>
+    <a href="register.html" class="btn-primary">
+      <i class="fas fa-play-circle"></i> New to CityWheelsPK? Get Started
+    </a>
+
+    <div class="options">
+      <h2>Already a user?</h2>
+      <a href="login.html" class="btn-secondary">
+        <i class="fas fa-sign-in-alt"></i> Login
+      </a>
+      <a href="support.html" class="btn-secondary">
+        <i class="fas fa-headset"></i> Get Support
+      </a>
+      <a href="promotionss.html" class="btn-secondary">
+        <i class="fas fa-percentage"></i> View Promotions
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>

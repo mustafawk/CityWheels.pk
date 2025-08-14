@@ -1,0 +1,398 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Driver Registration - CityWheelsPK</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* Existing styles (if any) from style.css can be included here or kept in the external file */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-color: #2ecc71; /* Changed to green */
+      color: white;
+      padding: 10px 0;
+      text-align: center;
+      display: none; /* Removed the navigation bar */
+    }
+
+    nav .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    nav ul {
+      padding: 0;
+      list-style: none;
+    }
+
+    nav ul li {
+      display: inline;
+      margin: 0 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #ffc400;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-color: #e7f7ff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5em;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.1em;
+      color: #555;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .animated-icons i {
+      margin: 0 10px;
+      font-size: 2em;
+      color: #3498db;
+      animation: rotate 2s linear infinite;
+    }
+
+    /* Form Styles */
+    form {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    form h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 25px;
+      font-size: 2em;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #333;
+      transition: border-color 0.3s ease;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    }
+
+    .input-icon {
+      position: absolute;
+      top: 50%;
+      right: 10px;
+      transform: translateY(-50%);
+      color: #27ae60;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Submit Button */
+    .btn-submit {
+      background-color: #2ecc71;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-submit:hover {
+      background-color: #27ae60;
+      transform: scale(1.05);
+    }
+
+    .btn-submit .btn-arrow {
+      transition: transform 0.3s ease;
+    }
+
+    .btn-submit:hover .btn-arrow {
+      transform: translateX(5px);
+    }
+
+    .btn-submit.success {
+      background-color: #3498db;
+      animation: pulse 1s ease;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+      }
+
+      70% {
+        transform: scale(1.1);
+        box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+      }
+    }
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      form {
+        padding: 20px;
+      }
+
+      .hero h1 {
+        font-size: 2em;
+      }
+
+      .hero p {
+        font-size: 1em;
+      }
+    }
+  </style>
+ </head>
+ <body>
+ <nav>
+  <div class="logo">
+   <i class="fas fa-car-side"></i> CityWheelsPK
+  </div>
+  <ul class="menu">
+   <li><a href="driver.html"><i class="fas fa-id-card"></i> Drivers</a></li>
+   <li><a href="vehicle.html"><i class="fas fa-car"></i> Vehicles</a></li>
+   <li><a href="passenger.html"><i class="fas fa-users"></i> Passengers</a></li>
+   <li><a href="ride.html"><i class="fas fa-route"></i> Rides</a></li>
+   <li><a href="schedule.html"><i class="fas fa-calendar-alt"></i> Schedules</a></li>
+   <li><a href="uses.html"><i class="fas fa-tasks"></i> Assignments</a></li>
+   <li><a href="payment.html"><i class="fas fa-money-bill-wave"></i> Payments</a></li>
+   <li><a href="promotion.html"><i class="fas fa-percentage"></i> Promotions</a></li>
+   <li><a href="feedback.html"><i class="fas fa-comment-alt"></i> Feedback</a></li>
+   <li><a href="support.html"><i class="fas fa-headset"></i> Support</a></li>
+   <li><a href="maintenance.html"><i class="fas fa-tools"></i> Maintenance</a></li>
+  </ul>
+ </nav>
+
+ <div class="hero">
+  <div class="hero-content">
+   <h1><i class="fas fa-id-card animated-bounce"></i> Driver Registration</h1>
+   <p>Join our team of professional drivers and start earning today</p>
+   <div class="animated-icons">
+    <i class="fas fa-car animated-float delay-1"></i>
+    <i class="fas fa-map-marked-alt animated-float delay-2"></i>
+    <i class="fas fa-wallet animated-float delay-3"></i>
+   </div>
+  </div>
+ </div>
+
+ <form id="driverForm" class="animated-form">
+  <h2><i class="fas fa-user-tie"></i> Driver Information</h2>
+
+  <div class="form-group">
+   <label for="D_ID"><i class="fas fa-fingerprint"></i> Driver ID (Unique Number):</label>
+   <input type="number" id="D_ID" name="D_ID" required min="1">
+   <i class="fas fa-check-circle input-icon"></i>
+  </div>
+
+  <div class="form-group">
+   <label for="dname"><i class="fas fa-user"></i> Full Name:</label>
+   <input type="text" id="dname" name="dname" required maxlength="100">
+   <i class="fas fa-check-circle input-icon"></i>
+  </div>
+
+  <div class="form-group">
+   <label for="contactnum"><i class="fas fa-phone"></i> Contact Number:</label>
+   <input type="number" id="contactnum" name="contactnum" required>
+   <i class="fas fa-check-circle input-icon"></i>
+  </div>
+
+  <div class="form-group">
+   <label for="insuranceDoc"><i class="fas fa-file-contract"></i> Insurance Document:</label>
+   <input type="text" id="insuranceDoc" name="insuranceDoc" required maxlength="100">
+   <i class="fas fa-check-circle input-icon"></i>
+  </div>
+
+  <div class="form-group">
+   <label for="PaymentMethod"><i class="fas fa-credit-card"></i> Payment Method:</label>
+   <select id="PaymentMethod" name="PaymentMethod" required>
+    <option value="">Select Payment Method</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Bank Transfer">Bank Transfer</option>
+    <option value="Mobile Payment">Mobile Payment</option>
+    <option value="Cash">Cash</option>
+   </select>
+  </div>
+
+  <div class="form-group">
+   <label for="Statuss"><i class="fas fa-toggle-on"></i> Status:</label>
+   <select id="Statuss" name="Statuss" required>
+    <option value="1">Active</option>
+    <option value="0">Inactive</option>
+   </select>
+  </div>
+
+  <div class="form-group">
+   <label for="LicenceNumber"><i class="fas fa-id-card-alt"></i> Licence Number:</label>
+   <input type="number" id="LicenceNumber" name="LicenceNumber" required>
+   <i class="fas fa-check-circle input-icon"></i>
+  </div>
+
+  <button type="submit" class="btn-submit">
+   <i class="fas fa-user-plus"></i> Register as Driver
+   <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+  </button>
+ </form>
+
+ <script>
+ document.getElementById('driverForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Get all form values
+  const formData = {
+   D_ID: parseInt(document.getElementById('D_ID').value),
+   dname: document.getElementById('dname').value,
+   contactnum: parseInt(document.getElementById('contactnum').value),
+   insuranceDoc: document.getElementById('insuranceDoc').value,
+   PaymentMethod: document.getElementById('PaymentMethod').value,
+   Statuss: parseInt(document.getElementById('Statuss').value),
+   LicenceNumber: parseInt(document.getElementById('LicenceNumber').value)
+  };
+
+  try {
+   const response = await fetch('/api/drivers', {
+    method: 'POST',
+    headers: {
+     'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData)
+   });
+
+   const result = await response.json();
+
+   if (response.ok) {
+    // Add success animation before redirect
+    document.querySelector('.btn-submit').classList.add('success');
+    setTimeout(() => {
+     alert('Driver registered successfully!');
+     window.location.href = 'vehicle.html';
+    }, 1000);
+   } else {
+    alert(`Registration failed: ${result.error || result.message}`);
+   }
+  } catch (error) {
+   console.error('Error:', error);
+   alert('An error occurred during registration. Please try again.');
+  }
+ });
+
+ // Add input validation indicators
+ document.querySelectorAll('input').forEach(input => {
+  input.addEventListener('input', function() {
+   const isValid = this.checkValidity();
+   const icon = this.nextElementSibling;
+   if (icon && icon.classList.contains('input-icon')) {
+    icon.style.opacity = isValid ? '1' : '0';
+   }
+  });
+ });
+ </script>
+ </body>
+ </html>
+ 

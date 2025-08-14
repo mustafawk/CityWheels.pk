@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register - CityWheelsPK</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* General Styles */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #374151; /* Gray-700 */
+      --subtext-color: #6b7280; /* Gray-500 */
+      --font-family: 'Segoe UI', sans-serif;
+      --transition-speed: 0.4s;
+      --shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+      --border-radius: 0.75rem;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      margin: 0;
+      font-family: var(--font-family);
+      background-color: #f7f9fb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      animation: fadeIn 1s ease;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 20px;
+      color: #2c3e50;
+      font-weight: 700;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 400px;
+      width: 100%;
+      padding: 40px 30px;
+      border-radius: var(--border-radius);
+      background-color: var(--bg-color);
+      box-shadow: var(--shadow);
+      opacity: 0; /* Initially hidden */
+      transition: opacity var(--transition-speed) ease;
+    }
+
+    .options-container.visible {
+      opacity: 1; /* Show after loading */
+    }
+
+    .role-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .role-buttons a {
+      padding: 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+
+    .role-buttons a:hover,
+    .role-buttons a:focus {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgb(0 0 0 / 0.15);
+      outline: none;
+    }
+
+    .driver-btn {
+      background-color: #1abc9c;
+    }
+
+    .passenger-btn {
+      background-color: #34495e;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    /* Loading Screen Styles */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      background: var(--bg-color);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      z-index: 10000;
+      transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+    }
+
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #car-logo {
+      width: 100px;
+      height: 55px;
+      stroke: var(--text-color);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      user-select: none;
+    }
+
+    #loading-percentage {
+      font-size: 6rem;
+      font-weight: 700;
+      color: var(--text-color);
+      user-select: none;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    #loading-text {
+      font-size: 1.125rem;
+      font-weight: 500;
+      color: var(--subtext-color);
+      user-select: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading-screen" role="alert" aria-live="polite" aria-label="Loading progress">
+    <svg id="car-logo" viewBox="0 0 120 65" aria-hidden="true" focusable="false" >
+      <!-- Car body outline -->
+      <path d="M10 45 L25 25 L85 25 L110 45 L110 53 L10 53 Z" />
+      <!-- Car roof -->
+      <path d="M32 25 Q40 10 65 10 Q90 10 95 25" />
+      <!-- Wheels -->
+      <circle cx="30" cy="55" r="8" />
+      <circle cx="90" cy="55" r="8" />
+      <!-- Details: doors lines -->
+      <line x1="45" y1="45" x2="60" y2="45" />
+      <line x1="70" y1="45" x2="85" y2="45" />
+    </svg>
+    <div id="loading-percentage">0%</div>
+    <div id="loading-text">Loading...</div>
+  </div>
+
+  <h1>Welcome to CityWheelsPK</h1>
+  <div class="options-container" role="main">
+    <p style="font-size: 1.2em; color: #555;">
+      New to CityWheelsPK? Choose your role to get started:
+    </p>
+    <div class="role-buttons">
+      <a href="driver.html" class="driver-btn"><i class="fas fa-id-badge"></i> Register as Driver</a>
+      <a href="passenger.html" class="passenger-btn"><i class="fas fa-user"></i> Register as Passenger</a>
+    </div>
+  </div>
+
+<script>
+  (function() {
+    const loadingScreen = document.getElementById('loading-screen');
+    const loadingPercentage = document.getElementById('loading-percentage');
+    const optionsContainer = document.querySelector('.options-container');
+
+    let progress = 0;
+    const duration = 3000; // 3 seconds
+
+    let start = null;
+
+    function step(timestamp) {
+      if (!start) start = timestamp;
+      const elapsed = timestamp - start;
+      progress = Math.min(100, Math.floor((elapsed / duration) * 100));
+      loadingPercentage.textContent = progress + '%';
+
+      if (progress < 100) {
+        window.requestAnimationFrame(step);
+      } else {
+        // Fade out loading screen, fade in options container
+        loadingScreen.classList.add('hidden');
+        optionsContainer.classList.add('visible');
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  })();
+</script>
+</body>
+</html>

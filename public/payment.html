@@ -1,0 +1,334 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ 
+
+ <head>
+  <meta charset="UTF-8">
+  <title>Payment Management - CityWheelsPK</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+    }
+ 
+
+    /* Navigation Bar */
+    nav {
+      background-color: #3498db;
+      color: white;
+      padding: 15px 0;
+      text-align: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      display: none;
+    }
+ 
+
+    nav .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+ 
+
+    nav ul {
+      padding: 0;
+      list-style: none;
+      margin: 0;
+    }
+ 
+
+    nav ul li {
+      display: inline;
+      margin: 0 15px;
+    }
+ 
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+ 
+
+    nav a:hover,
+    nav a.active {
+      color: #f39c12;
+    }
+ 
+
+    /* Hero Section */
+    .hero {
+      background-color: #e7f7ff;
+      padding: 50px 20px;
+      text-align: center;
+    }
+ 
+
+    .hero h1 {
+      font-size: 2.8em;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+ 
+
+    .hero p {
+      font-size: 1.2em;
+      color: #555;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+ 
+
+    /* Form Styles */
+    form {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+ 
+
+    form h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 30px;
+      font-size: 2.2em;
+    }
+ 
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-weight: 500;
+    }
+ 
+
+    form input[type="number"],
+    form input[type="text"],
+    form input[type="datetime-local"],
+    form select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 1em;
+      color: #333;
+      margin-bottom: 20px;
+      transition: border-color 0.3s ease;
+    }
+ 
+
+    form input[type="number"]:focus,
+    form input[type="text"]:focus,
+    form input[type="datetime-local"]:focus,
+    form select:focus {
+      border-color: #3498db;
+      outline: none;
+      box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+    }
+ 
+
+    form button[type="submit"] {
+      background-color: #2ecc71;
+      color: white;
+      padding: 14px 20px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+ 
+
+    form button[type="submit"]:hover {
+      background-color: #27ae60;
+      transform: scale(1.05);
+    }
+ 
+
+    /* Action Buttons */
+    .edit-btn,
+    .refund-btn {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-right: 5px;
+      transition: background-color 0.3s ease;
+    }
+ 
+
+    .edit-btn:hover,
+    .refund-btn:hover {
+      background-color: #2980b9;
+    }
+  </style>
+ </head>
+ 
+
+ <body>
+  <nav>
+   <div class="logo">CityWheelsPK</div>
+   <ul class="menu">
+    <li><a href="driver.html">Drivers</a></li>
+    <li><a href="vehicle.html">Vehicles</a></li>
+    <li><a href="passenger.html">Passengers</a></li>
+    <li><a href="ride.html">Rides</a></li>
+    <li><a href="schedule.html">Schedules</a></li>
+    <li><a href="uses.html">Vehicle Assignments</a></li>
+    <li><a href="payment.html">Payments</a></li>
+    <li><a href="promotion.html">Promotions</a></li>
+    <li><a href="feedback.html">Feedback</a></li>
+    <li><a href="support.html">Support Requests</a></li>
+    <li><a href="maintenance.html">Maintenance</a></li>
+   </ul>
+  </nav>
+ 
+
+  <div class="hero">
+   <h1>
+    <i class="fas fa-money-bill-wave"></i> Payment Management
+   </h1>
+   <p>Process and track all payment transactions</p>
+  </div>
+ 
+
+  <form id="paymentForm">
+   <h2>Payment Details</h2>
+ 
+
+   <label for="Payment_ID">
+    <i class="fas fa-id-card"></i> Payment ID:
+   </label>
+   <input type="number" id="Payment_ID" name="Payment_ID" required min="1">
+ 
+
+   <label for="Amount">
+    <i class="fas fa-dollar-sign"></i> Amount ($):
+   </label>
+   <input type="number" id="Amount" name="Amount" required min="0" step="0.01">
+ 
+
+   <label for="PaymentMethod">
+    <i class="fas fa-credit-card"></i> Payment Method:
+   </label>
+   <select id="PaymentMethod" name="PaymentMethod" required>
+    <option value="">Select Method</option>
+    <option value="Credit Card">Credit Card</option>
+    <option value="Debit Card">Debit Card</option>
+    <option value="Cash">Cash</option>
+    <option value="Mobile Payment">Mobile Payment</option>
+   </select>
+ 
+
+   <label for="Statuss">
+    <i class="fas fa-info-circle"></i> Status:
+   </label>
+   <select id="Statuss" name="Statuss" required>
+    <option value="1">Completed</option>
+    <option value="0">Pending</option>
+    <option value="2">Failed</option>
+    <option value="3">Refunded</option>
+   </select>
+ 
+
+   <label for="TimeStamp">
+    <i class="fas fa-calendar-alt"></i> Date & Time:
+   </label>
+   <input type="datetime-local" id="TimeStamp" name="TimeStamp" required>
+ 
+
+   <label for="PromoUsed">
+    <i class="fas fa-tag"></i> Promo Code Used:
+   </label>
+   <input type="text" id="PromoUsed" name="PromoUsed" maxlength="100">
+ 
+
+   <label for="P_ID">
+    <i class="fas fa-user"></i> Passenger ID:
+   </label>
+   <input type="number" id="P_ID" name="P_ID" required min="1">
+ 
+
+   <label for="Ride_ID">
+    <i class="fas fa-route"></i> Ride ID:
+   </label>
+   <input type="number" id="Ride_ID" name="Ride_ID" required min="1">
+ 
+
+   <button type="submit">
+    <i class="fas fa-check-circle"></i> Process Payment
+   </button>
+  </form>
+ 
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Form submission handler
+      document.getElementById('paymentForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+ 
+
+        const formData = {
+          Payment_ID: parseInt(document.getElementById('Payment_ID').value),
+          Amount: parseFloat(document.getElementById('Amount').value),
+          PaymentMethod: document.getElementById('PaymentMethod').value,
+          Statuss: parseInt(document.getElementById('Statuss').value),
+          TimeStamp: document.getElementById('TimeStamp').value,
+          PromoUsed: document.getElementById('PromoUsed').value || null,
+          P_ID: parseInt(document.getElementById('P_ID').value),
+          Ride_ID: parseInt(document.getElementById('Ride_ID').value)
+        };
+ 
+
+        try {
+          const response = await fetch('/api/payments', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+          });
+ 
+
+          const result = await response.json();
+ 
+
+          if (response.ok) {
+            alert('Payment processed successfully!');
+            document.getElementById('paymentForm').reset();
+          } else {
+            alert(`Payment failed: ${result.error || result.message}`);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An error occurred. Please try again.');
+        }
+        window.location.href = 'paymentThanks.html'; // ADD THIS LINE
+      });
+    });
+  </script>
+ </body>
+ 
+
+ </html>
+ 

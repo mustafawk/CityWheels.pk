@@ -1,0 +1,128 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latest Promotions - CityWheelsPK</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #ffffff; /* Light background */
+      margin: 0;
+      padding: 0;
+      color: #6b7280; /* Neutral gray body text */
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #2d3748; /* Darker heading color */
+      text-align: center;
+      margin-bottom: 40px;
+      font-weight: 600;
+    }
+
+    /* Promotion Card Styles */
+    .promotion-card {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-bottom: 20px;
+      transition: transform 0.2s ease-in-out;
+    }
+
+    .promotion-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .promotion-code {
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #3490dc; /* Primary color for code */
+      margin-bottom: 10px;
+    }
+
+    .promotion-description {
+      font-size: 1em;
+      margin-bottom: 15px;
+    }
+
+    .discount-percentage {
+      font-size: 1.1em;
+      color: #2ecc71; /* Success color for discount */
+      font-weight: bold;
+    }
+
+    .validity {
+      font-size: 0.9em;
+      color: #718096; /* Secondary text color */
+    }
+
+    /* Responsive Layout */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 2em;
+      }
+
+      .promotion-card {
+        padding: 20px;
+      }
+    }
+  </style>
+ </head>
+ <body>
+ <div class="container">
+  <h1>Latest Promotions</h1>
+
+  <div id="promotions-container">
+   <!-- Promotions will be dynamically loaded here -->
+  </div>
+ </div>
+
+ <script>
+  document.addEventListener('DOMContentLoaded', async () => {
+   await loadPromotions();
+  });
+
+  async function loadPromotions() {
+   try {
+    const response = await fetch('/api/promotions'); // Replace with your API endpoint
+    const promotions = await response.json();
+
+    const promotionsContainer = document.getElementById('promotions-container');
+
+    promotions.forEach(promo => {
+     const card = document.createElement('div');
+     card.classList.add('promotion-card');
+
+     card.innerHTML = `
+          <h2 class="promotion-code">${promo.P_Code}</h2>
+          <p class="promotion-description">${promo.PDescription}</p>
+          <p class="discount-percentage">Discount: ${promo.Percentage}%</p>
+          <p class="validity">Valid from ${new Date(promo.Startt).toLocaleDateString()} to ${new Date(promo.Endd).toLocaleDateString()}</p>
+        `;
+
+     promotionsContainer.appendChild(card);
+    });
+   } catch (error) {
+    console.error('Error loading promotions:', error);
+    promotionsContainer.innerHTML = '<p>Error loading promotions. Please try again later.</p>';
+   }
+  }
+ </script>
+ </body>
+ </html>
+ 

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>You're All Set! - CityWheelsPK</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #374151; /* Gray-700 */
+      --subtext-color: #6b7280; /* Gray-500 */
+      --font-family: 'Poppins', sans-serif;
+      --transition-speed: 0.4s;
+      --shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+      --border-radius: 12px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body, html {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-color: #e7f7ff;
+      padding: 50px 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .hero h1 {
+      font-size: 2.8em;
+      color: #2c3e50;
+      margin-bottom: 10px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    .hero p {
+      font-size: 1.2em;
+      color: #555;
+      margin-bottom: 30px;
+      animation: fadeInDown 1s ease-in-out;
+    }
+
+    /* Button Styles */
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 28px;
+      margin: 10px;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      background-color: #2ecc71;
+      color: white;
+    }
+
+    .btn-secondary {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #27ae60;
+      transform: scale(1.05);
+    }
+
+    .btn-secondary:hover {
+      background-color: #2980b9;
+      transform: scale(1.05);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Loading Screen Styles */
+    #loading-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-color);
+      flex-direction: column;
+      gap: 24px;
+      z-index: 1000;
+      transition: opacity var(--transition-speed) ease, visibility var(--transition-speed) ease;
+    }
+
+    #loading-screen.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    #car-logo {
+      width: 100px;
+      height: 55px;
+      stroke: var(--text-color);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      user-select: none;
+    }
+
+    #loading-percentage {
+      font-size: 96px;
+      font-weight: 600;
+      color: var(--text-color);
+      user-select: none;
+      letter-spacing: -0.03em;
+    }
+
+    #loading-text {
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--subtext-color);
+      user-select: none;
+    }
+
+    /* Initially hide the hero content */
+    .hero {
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+    }
+
+    .hero.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="loading-screen" role="alert" aria-live="polite" aria-label="Loading progress">
+    <svg id="car-logo" viewBox="0 0 120 65" aria-hidden="true" focusable="false" >
+      <!-- Car body outline -->
+      <path d="M10 45 L25 25 L85 25 L110 45 L110 53 L10 53 Z" />
+      <!-- Car roof -->
+      <path d="M32 25 Q40 10 65 10 Q90 10 95 25" />
+      <!-- Wheels -->
+      <circle cx="30" cy="55" r="8" />
+      <circle cx="90" cy="55" r="8" />
+      <!-- Details: doors lines -->
+      <line x1="45" y1="45" x2="60" y2="45" />
+      <line x1="70" y1="45" x2="85" y2="45" />
+    </svg>
+    <div id="loading-percentage">0%</div>
+    <div id="loading-text">Loading...</div>
+  </div>
+
+  <div class="hero">
+    <h1><i class="fas fa-check-circle"></i> You're All Set!</h1>
+    <p>Thank you for registering with CityWheelsPK! You're now ready to start using our services.</p>
+
+    <a href="ride.html" class="btn btn-primary">
+      <i class="fas fa-car"></i> Book a Ride
+    </a>
+    <a href="index.html" class="btn btn-secondary">
+      <i class="fas fa-home"></i> Back to Main Page
+    </a>
+  </div>
+
+  <script>
+    (function() {
+      const loadingScreen = document.getElementById('loading-screen');
+      const loadingPercentage = document.getElementById('loading-percentage');
+      const heroContent = document.querySelector('.hero');
+
+      let progress = 0;
+      const duration = 3000; // 3 seconds for full count
+
+      let start = null;
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        const elapsed = timestamp - start;
+        progress = Math.min(100, Math.floor((elapsed / duration) * 100));
+        loadingPercentage.textContent = progress + '%';
+
+        if (progress < 100) {
+          window.requestAnimationFrame(step);
+        } else {
+          // Fade out loading screen, fade in hero content
+          loadingScreen.classList.add('hidden');
+          heroContent.classList.add('visible');
+        }
+      }
+
+      window.requestAnimationFrame(step);
+    })();
+  </script>
+</body>
+</html>

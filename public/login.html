@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CityWheelsPK - Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fb;
+      animation: fadeIn 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #e8f6f3;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .login-container h1 {
+      font-size: 2em;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .login-container p {
+      font-size: 1.2em;
+      color: #333;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 28px;
+      margin: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      background-color: #1abc9c;
+      color: white;
+      font-size: 1em;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: #16a085;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h1>Login to CityWheelsPK</h1>
+    <p>Please select your role:</p>
+    <a href="loginD.html" class="btn">
+      <i class="fas fa-user-tie"></i> Login as Driver
+    </a>
+    <a href="loginP.html" class="btn">
+      <i class="fas fa-user"></i> Login as Passenger
+    </a>
+  </div>
+
+</body>
+</html>

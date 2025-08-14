@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CityWheelsPK - Driver Login</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f7f9fb;
+      animation: fadeIn 1s ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #e8f6f3;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .login-container h1 {
+      font-size: 2em;
+      color: #1a1a1a;
+      margin-bottom: 20px;
+    }
+
+    .login-container input {
+      width: 80%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+      padding: 14px 28px;
+      margin: 10px;
+      border-radius: 8px;
+      font-weight: bold;
+      background-color: #1abc9c;
+      color: white;
+      font-size: 1em;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #16a085;
+      transform: scale(1.05);
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h1>Driver Login</h1>
+    <p>Please enter your Driver ID:</p>
+    <input type="text" id="driverId" placeholder="Driver ID" required>
+    <br>
+    <button class="btn" id="loginButton">
+      <i class="fas fa-sign-in-alt"></i> Login
+    </button>
+    <p class="error-message" id="errorMessage" style="display: none;"></p>
+  </div>
+
+  <script>
+    document.getElementById('loginButton').addEventListener('click', async () => {
+      const driverId = document.getElementById('driverId').value;
+      const errorMessage = document.getElementById('errorMessage');
+
+      // Clear previous error message
+      errorMessage.style.display = 'none';
+
+      try {
+        const response = await fetch(`/api/drivers/${driverId}`, {
+          method: 'GET',
+        });
+
+        if (response.ok) {
+          // Successful login, redirect or perform login actions
+          alert('Login successful!');
+          // Redirect to the driver's dashboard or another page
+          window.location.href = 'driver_dashboard.html'; // Change to your desired page
+        } else {
+          // Handle error response
+          const result = await response.json();
+          errorMessage.textContent = result.error || 'Invalid Driver ID. Please try again.';
+          errorMessage.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        errorMessage.textContent = 'An error occurred. Please try again later.';
+        errorMessage.style.display = 'block';
+      }
+    });
+  </script>
+
+</body>
+</html>
